@@ -48,7 +48,7 @@ function setup(){
   //suelo
   ground = createSprite (width/2,height-40, 400, 20);
   ground.addImage ("ground",groundImage);
-  sueloinvisible = createSprite (width/2,height-10, width, 20);
+  sueloinvisible = createSprite (width/2,height+10, width, 20);
   
   
   //crea el Personaje Cheems
@@ -56,7 +56,7 @@ function setup(){
   cheems.addAnimation("running", cheems_running);
   cheems.addAnimation("explosion", explosionAnimacion);
   //añade escala y posición al Trex
-  cheems.scale = 0.09;
+  cheems.scale = 0.12;
   cheems.x = 50;
   cheems.debug = false;
   cheems.setCollider("circle", -100,0,400);
@@ -193,12 +193,15 @@ if(songplayb===0){
      
     //MUESTRA BOTON PLAY
      botonSprite.visible = true;
-     if(mousePressedOver(botonSprite)){
+     if(mousePressedOver(botonSprite) || touches.length > 0){
        reset ();
+       touches = [];
     }
      
   }
   //MUESTRA SCORE EN PANTALLA
+  textSize(20)
+  fill("white")
   text("score: "+score,width-80,height/10)
   
   drawSprites();
@@ -219,7 +222,7 @@ function spawnPlanets(){
     break;
   }
   
-  Planet1.scale = 0.1
+  Planet1.scale = 0.2
   Planet1.y = Math.round (random(height/10, height/8))
   Planet1.depth = cheems.depth 
   cheems.depth = cheems.depth +1 
@@ -237,33 +240,29 @@ function spawnAliens(){
   var numero = Math.round(random(1,6))
   switch (numero){
     case 1:Alien.addImage (a1)
-    Alien.y = height-60
+    Alien.y = height-90
     break;
     case 2:Alien.addImage (a2)
     Alien.y = Math.round(random(height/8,height/2));
     break;
     case 3:Alien.addImage (a3)
-    Alien.y = height-60
+    Alien.y = height-90
     break;
     case 4:Alien.addImage (a4)
-    Alien.y = height-75
+    Alien.y = height-135
     break;
     case 5:Alien.addImage (a5)
-    Alien.y = height-75
+    Alien.y = height-125
     break;
     case 6:Alien.addImage (a6)
-    Alien.y = height-85
+    Alien.y = height-145
     break;
+    
   }
   
-  if(height>300){
-    Alien.scale = 0.4
-    //Alien.velocityY = 1
-    Alien.y = height-100;
-  }
-  else{
-  Alien.scale = 0.2
-  }
+
+  Alien.scale = 0.5
+
   Alien.depth = cheems.depth 
   cheems.depth = cheems.depth +1
   
