@@ -227,7 +227,7 @@ function spawnPlanets(){
   Planet1.depth = cheems.depth 
   cheems.depth = cheems.depth +1 
   Planet1.velocityX = -1;
-  Planet1.lifetime = 650;
+  Planet1.lifetime = width+10;
    
   planetsGroup.add(Planet1);
    
